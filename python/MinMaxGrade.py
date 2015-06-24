@@ -19,22 +19,22 @@ def main():
                 usage()
                 sys.exit(1)
         fp.seek(0)
-        max=-1
-        min=11
+        max = -1
+        min = 11
         for idx, line in enumerate(list(fp)):
-                a=line.split("\t")
+                a = line.split("\t")
                 if len(a) < 4:
                         continue
-                if max<float(a[3]):
-                        prenume_max=a[0]
-                        nume_max=a[1]
-                        grupa_max=a[2]
-                        max=float(a[3])
-                if min>float(a[3]):
-                        prenume_min=a[0]
-                        nume_min=a[1]
-                        grupa_min=a[2]
-                        min=float(a[3])
+                if max < float(a[3]):
+                        prenume_max = a[0]
+                        nume_max = a[1]
+                        grupa_max = a[2]
+                        max = float(a[3])
+                if min > float(a[3]):
+                        prenume_min = a[0]
+                        nume_min = a[1]
+                        grupa_min = a[2]
+                        min = float(a[3])
         print "Studentul cu nota maxima:", prenume_max, nume_max, grupa_max
         print "Studentul cu nota minima:", prenume_min, nume_min, grupa_min
 
