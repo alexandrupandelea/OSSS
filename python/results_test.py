@@ -2,7 +2,7 @@
 
 import sys
 import csv
-
+	
 
 def usage():
     print >> sys.stderr, "Usage: python %s <filename>" % (sys.argv[0])
@@ -27,22 +27,34 @@ def main():
                 if test['test_name'] == line[0]:
                         found = 1
                         k = idx
+
+        student = {
+                'name': line[2],
+                'school': line[1]
+                }
         if found == 0:
                 newtest = {
                         'test_name': line[0],
-                        'school': line[1],
-                        'stud_name': line[2],
+                        'students': [student],
+#                        'school': line[1],
+#                         'stud_name': line[2],
                         'grade': int(line[3])
                         }
                 tests.append(newtest)
-        elif tests[k]['grade'] < int(line[3]):
-                        (tests[k]['school'], tests[k]['stud_name'],
+        else:
+            if tests[k]['grade'] < int(line[3]):
+                        (tests[k]['students'],
                                 tests[k]['grade']) = \
-                                (line[1], line[2], int(line[3]))
-    for t in tests:
-        print "For test %s maximum grade is %d, student %s from %s" \
-                % (t['test_name'], t['grade'], t['stud_name'], t['school'])
+                                ([student], int(line[3]))
+            elif tests[k]['grade'] == int(line[3]):
+                tests[k]['students'].append(student)
 
+    for t in tests:
+        print "For test %s maximum grade is %d" \
+                % (t['test_name'], t['grade'])
+        for st in t['students']:
+            print "\t\t", st['name'], st['school']
+        print
 
 if __name__ == "__main__":
     sys.exit(main())
