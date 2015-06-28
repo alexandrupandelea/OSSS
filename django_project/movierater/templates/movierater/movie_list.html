@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Movie Rater</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static "css/movierater.css" %}">
+        <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="page-header">
+            <h1><a href="">Movie Rater</h1>
+        </div>
+        <div class="content container">
+             <div class="row">
+                  <div class="col-md-8">
+                        {% for movie in movies %}
+                            <div class="movie">
+                                <h1><a href="">{{ movie.title }}</a></h1>
+                                <p><img src={{ movie.poster }} alt={{movie.title}} witdth="128" height="128"></p>
+                                <p>Release date: {{ movie.launch_date }}</p>
+                                <p>Imdb link: <a href = {{ movie.imdb_link }}>{{movie.title}}</a></p>
+                                {% if movie.grade.grade == 0 %}
+                                    <p>Not graded yet</p>
+                                {% else %}
+                                    <p> Grade is: {{movie.grade.grade}}</p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                     </div>
+             </div>
+         </div>
+</html>
