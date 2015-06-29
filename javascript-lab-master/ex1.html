@@ -69,6 +69,27 @@
     	title.textContent = x.value;
     }
 
+    //////////////////ex2//////////////////////////////
+    var interschimba = function(event) {
+    	console.log("la", event.currentTarget);
+    	if(event.currentTarget.parentNode.id === "list1")
+    		var myList = document.getElementById("list2");
+    	else
+    		var myList = document.getElementById("list1");
+    	myList.appendChild(event.currentTarget);
+    }
+    var list1 = document.getElementById("list1").getElementsByTagName("li");
+    for(var i = 0; i < list1.length; i++) {
+    	var x = list1[i].addEventListener("click", interschimba);
+    } 
+    var list2 = document.getElementById("list2").getElementsByTagName("li");
+    for(var i = 0; i < list2.length; i++) {
+    	var x = list2[i].addEventListener("click", interschimba);
+    }
+
+    //var myList=document.getElementById("list1").addEventListener("click", function(){var a=prompt("It worked");});
+    //for(var i = 0; i<list1.length; i++)
+
     // Exercitii
     // 0. sa faceti acelasi lucru pentru myList2
     // 1. cand dau click schimba titlul
